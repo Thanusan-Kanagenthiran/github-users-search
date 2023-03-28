@@ -35,7 +35,29 @@
         </div>
       </nav>
     </header>
-    <main class="mt-5 pt-2"></main>
+    <main class="mt-5 pt-2 mx-5 px-5">
+      <div class="d-flex align-items-center mx-5 px-5 mt-4">
+        <input
+          class="form-control me-2"
+          type="search"
+          name=""
+          id="searchInput"
+        />
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          onclick="fetchGitHubUsers()"
+        >
+          Search
+        </button>
+      </div>
+
+      <br />
+      <br /><br />
+      <ol class="list-group list-group-numbered" id="GitHubUsersList">
+        <li></li>
+      </ol>
+    </main>
     <footer class="footer mt-auto py-3 bg-light sticky-bottom">
       <div class="container text-center">
         <span>&copy; 2023 Thanusan Kanagenthiran</span>

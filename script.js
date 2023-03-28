@@ -1,4 +1,9 @@
-const fetchGitHubUsers = async (searchInput) => {
+// Fetch GitHub users based on search input
+const fetchGitHubUsers = async () => {
+  let GitHubUserListDiv = document.getElementById("GitHubUsersList");
+  GitHubUserListDiv.innerHTML = "";
+  let searchInput = document.getElementById("searchInput").value;
+
   try {
     const response = await fetch(
       `https://api.github.com/search/users?q=${searchInput}`
@@ -17,13 +22,38 @@ const fetchGitHubUsers = async (searchInput) => {
   }
 };
 
-const displayGitHubUsersList = (users) => {
+// Display the GitHub users list in the DOM
+const displayGitHubUsersList = async (users) => {
+  let GitHubUserListDiv = document.getElementById("GitHubUsersList");
   if (!users.length) {
     console.log("No users found");
     return;
   }
-  users.forEach((user) => {
-    console.log(user.login);
+  await users.map((user, index) => {
+    // user list li node
+    const UserListTile = document.createElement("li");
+    UserListTile.classList.add(
+      "list-group-item",
+      "d-flex",
+      "justify-content-between",
+      "align-items-start"
+    );
+
+    // username node
+    const userName = document.createElement("span");
+    userName.classList.add("user-name");
+    userName.textContent = user.login;
+    UserListTile.appendChild(userName);
+
+    // avatar node
+    const avatar = document.createElement("img");
+    avatar.classList.add("avatar");
+    avatar.src = user.avatar_url;
+    avatar.style.width = "50px";
+    avatar.style.height = "auto";
+    UserListTile.appendChild(avatar);
+
+    GitHubUserListDiv.appendChild(UserListTile);
   });
 };
 
