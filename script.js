@@ -75,7 +75,6 @@ const fetchGitHubUserDetails = async (username) => {
 };
 
 const displayGitHubUserDetails = (user) => {
-  // 
   let GitHubUserListDiv = document.getElementById("GitHubUsersList");
   let userDetailsDiv = document.createElement("div");
   userDetailsDiv.classList.add("user-details");
@@ -83,19 +82,54 @@ const displayGitHubUserDetails = (user) => {
   let userName = document.createElement("h2");
   userName.textContent = user.login;
   userDetailsDiv.appendChild(userName);
-
+  // Avatar or profile picture
   let avatar = document.createElement("img");
   avatar.classList.add("avatar");
   avatar.src = user.avatar_url;
   userDetailsDiv.appendChild(avatar);
 
+  // User Bio
   let bio = document.createElement("p");
   bio.textContent = user.bio;
   userDetailsDiv.appendChild(bio);
 
+  // user location
   let location = document.createElement("p");
   location.textContent = user.location;
   userDetailsDiv.appendChild(location);
+
+  // Followers and following
+  let followers = document.createElement("p");
+  followers.textContent = `Followers: ${user.followers} | Following: ${user.following}`;
+  userDetailsDiv.appendChild(followers);
+
+  // Public repositories
+  let publicRepos = document.createElement("p");
+  publicRepos.textContent = `Public Repositories: ${user.public_repos}`;
+  userDetailsDiv.appendChild(publicRepos);
+
+  // Company and website
+  if (user.company) {
+    let company = document.createElement("p");
+    company.textContent = `Company: ${user.company}`;
+    userDetailsDiv.appendChild(company);
+  }
+
+  // Blog detail
+  if (user.blog) {
+    let website = document.createElement("p");
+    website.textContent = `Website: ${user.blog}`;
+    userDetailsDiv.appendChild(website);
+  }
+
+  // Account creation and last active date
+  let createdAt = document.createElement("p");
+  createdAt.textContent = `Account created at: ${user.created_at}`;
+  userDetailsDiv.appendChild(createdAt);
+  // last activated
+  let lastActive = document.createElement("p");
+  lastActive.textContent = `Last active: ${user.updated_at}`;
+  userDetailsDiv.appendChild(lastActive);
 
   GitHubUserListDiv.innerHTML = "";
   GitHubUserListDiv.appendChild(userDetailsDiv);
