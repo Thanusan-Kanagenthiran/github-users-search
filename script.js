@@ -18,15 +18,14 @@ const fetchGitHubUsers = async () => {
     displayGitHubUsersList(data.items);
   } catch (error) {
     console.error(error);
-    alert(error.message);
+    displayError(error.message);
   }
 };
 
-// Display the GitHub users list in the DOM
 const displayGitHubUsersList = async (users) => {
   let GitHubUserListDiv = document.getElementById("GitHubUsersList");
   if (!users.length) {
-    console.log("No users found");
+    displayError("No users found");
     return;
   }
   await users.map((user, index) => {
@@ -38,23 +37,26 @@ const displayGitHubUsersList = async (users) => {
     UserListTile.classList.add(
       "list-group-item",
       "d-flex",
-      "justify-content-between",
-      "align-items-start"
+      "align-items-center"
     );
+
+    // avatar node
+    const avatar = document.createElement("img");
+    avatar.classList.add("avatar", "mx-2", "rounded-circle");
+    avatar.src = user.avatar_url;
+    avatar.style.width = "50px";
+    avatar.style.height = "auto";
+    avatar.style.float = "left";
+    UserListTile.appendChild(avatar);
 
     // username node
     const userName = document.createElement("span");
     userName.classList.add("user-name");
-    userName.textContent = user.login;
+    userName.style.display = "inline-block";
+    userName.style.float = "left";
+    userName.textContent =
+      user.login.charAt(0).toUpperCase() + user.login.slice(1);
     UserListTile.appendChild(userName);
-
-    // avatar node
-    const avatar = document.createElement("img");
-    avatar.classList.add("avatar");
-    avatar.src = user.avatar_url;
-    avatar.style.width = "50px";
-    avatar.style.height = "auto";
-    UserListTile.appendChild(avatar);
 
     GitHubUserListDiv.appendChild(UserListTile);
   });
@@ -71,66 +73,109 @@ const fetchGitHubUserDetails = async (username) => {
     displayGitHubUserDetails(user);
   } catch (error) {
     console.error(error);
+    displayError(error.message);
   }
 };
-
 const displayGitHubUserDetails = (user) => {
   let GitHubUserListDiv = document.getElementById("GitHubUsersList");
-  let userDetailsDiv = document.createElement("div");
-  userDetailsDiv.classList.add("user-details");
+  GitHubUserListDiv.innerHTML = "";
 
-  let userName = document.createElement("h2");
-  userName.textContent = user.login;
-  userDetailsDiv.appendChild(userName);
-  // Avatar or profile picture
+  // create a row for user details
+  let row = document.createElement("div");
+  row.classList.add("row", "mt-4");
+
+  // create left column for user avatar and name
+  let leftCol = document.createElement("div");
+  leftCol.classList.add("col-md-5", "text-center");
+  row.appendChild(leftCol);
+
+  // add user avatar to the left column
   let avatar = document.createElement("img");
-  avatar.classList.add("avatar");
+  avatar.classList.add("avatar", "mb-3", "rounded-circle");
+  avatar.style.maxHeight = "200px";
   avatar.src = user.avatar_url;
-  userDetailsDiv.appendChild(avatar);
+  leftCol.appendChild(avatar);
 
-  // User Bio
+  // add user name to the left column
+  let userName = document.createElement("h4");
+  userName.textContent = user.login;
+  leftCol.appendChild(userName);
+
+  // create right column for user details
+  let rightCol = document.createElement("div");
+  rightCol.classList.add("col-md-7");
+  row.appendChild(rightCol);
+
+  // add user bio to the right column
   let bio = document.createElement("p");
   bio.textContent = user.bio;
-  userDetailsDiv.appendChild(bio);
+  rightCol.appendChild(bio);
 
-  // user location
-  let location = document.createElement("p");
-  location.textContent = user.location;
-  userDetailsDiv.appendChild(location);
+  // create a list for user details
+  let list = document.createElement("ul");
+  list.classList.add("list-group", "list-group-flush");
+  rightCol.appendChild(list);
 
-  // Followers and following
-  let followers = document.createElement("p");
-  followers.textContent = `Followers: ${user.followers} | Following: ${user.following}`;
-  userDetailsDiv.appendChild(followers);
+  // add user location to the list
+  if (user.location) {
+    let location = document.createElement("li");
+    location.classList.add("list-group-item");
+    location.innerHTML = `<strong>Location:</strong> ${user.location}`;
+    list.appendChild(location);
+  }
 
-  // Public repositories
-  let publicRepos = document.createElement("p");
-  publicRepos.textContent = `Public Repositories: ${user.public_repos}`;
-  userDetailsDiv.appendChild(publicRepos);
+  // add followers and following to the list
+  let followers = document.createElement("li");
+  followers.classList.add("list-group-item");
+  followers.innerHTML = `<strong>Followers:</strong> ${user.followers} | <strong>Following:</strong> ${user.following}`;
+  list.appendChild(followers);
 
-  // Company and website
+  // add public repositories to the list
+  let publicRepos = document.createElement("li");
+  publicRepos.classList.add("list-group-item");
+  publicRepos.innerHTML = `<strong>Public Repositories:</strong> ${user.public_repos}`;
+  list.appendChild(publicRepos);
+
+  // add company to the list
   if (user.company) {
-    let company = document.createElement("p");
-    company.textContent = `Company: ${user.company}`;
-    userDetailsDiv.appendChild(company);
+    let company = document.createElement("li");
+    company.classList.add("list-group-item");
+    company.innerHTML = `<strong>Company:</strong> ${user.company}`;
+    list.appendChild(company);
   }
 
-  // Blog detail
+  // add website to the list
   if (user.blog) {
-    let website = document.createElement("p");
-    website.textContent = `Website: ${user.blog}`;
-    userDetailsDiv.appendChild(website);
+    let website = document.createElement("li");
+    website.classList.add("list-group-item");
+    website.innerHTML = `<strong>Website:</strong> <a href="${user.blog}" target="_blank">${user.blog}</a>`;
+    list.appendChild(website);
   }
 
-  // Account creation and last active date
-  let createdAt = document.createElement("p");
-  createdAt.textContent = `Account created at: ${user.created_at}`;
-  userDetailsDiv.appendChild(createdAt);
-  // last activated
-  let lastActive = document.createElement("p");
-  lastActive.textContent = `Last active: ${user.updated_at}`;
-  userDetailsDiv.appendChild(lastActive);
+  // add account creation date to the list
+  let createdAt = document.createElement("li");
+  createdAt.classList.add("list-group-item");
+  createdAt.innerHTML = `<strong>Account created at:</strong> ${new Date(
+    user.created_at
+  ).toLocaleDateString()}`;
+  list.appendChild(createdAt);
 
-  GitHubUserListDiv.innerHTML = "";
-  GitHubUserListDiv.appendChild(userDetailsDiv);
+  // add last active date to the list
+  let lastActive = document.createElement("li");
+  lastActive.classList.add("list-group-item");
+  lastActive.innerHTML = `<strong>Last active:</strong> ${new Date(
+    user.updated_at
+  ).toLocaleDateString()}`;
+  list.appendChild(lastActive);
+
+  GitHubUserListDiv.appendChild(row);
 };
+
+function displayError(message) {
+  // Set the error message in the modal
+  document.getElementById("errorMessage").textContent = message;
+
+  // Display the modal
+  var errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
+  errorModal.show();
+}

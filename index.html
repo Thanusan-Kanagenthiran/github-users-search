@@ -79,5 +79,25 @@
     ></script>
     <!-- Custom JS -->
     <script src="script.js"></script>
+  
   </body>
+  <!-- Modal for displaying error messages -->
+  <div class="modal alert alert-primary border-5" role="alert" id="errorModal">
+    <div class="modal-dialog text-danger">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Error</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p id="errorMessage"></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </html>
