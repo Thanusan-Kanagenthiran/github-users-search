@@ -25,8 +25,7 @@ The project uses the GitHub REST API to search for users and retrieve user detai
 - `/search/users?q={query}` to search for users.
 - `/users/{username}` to retrieve the details of a particular user.
 
-You can find more information about the GitHub REST API v3 in the official documentation
-https://docs.github.com/en/rest?apiVersion=2022-11-28
+You can find more information about the GitHub REST API v3 in the official documentation [here](https://docs.github.com/en/rest?apiVersion=2022-11-28)
 
 ## Notes
 
