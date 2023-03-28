@@ -32,6 +32,9 @@ const displayGitHubUsersList = async (users) => {
   await users.map((user, index) => {
     // user list li node
     const UserListTile = document.createElement("li");
+    UserListTile.addEventListener("click", () =>
+      fetchGitHubUserDetails(user.login)
+    );
     UserListTile.classList.add(
       "list-group-item",
       "d-flex",
@@ -58,14 +61,42 @@ const displayGitHubUsersList = async (users) => {
 };
 
 const fetchGitHubUserDetails = async (username) => {
+  searchInput.value = null;
   try {
     const response = await fetch(`https://api.github.com/users/${username}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const data = await response.json();
-    console.log(data);
+    const user = await response.json();
+    displayGitHubUserDetails(user);
   } catch (error) {
     console.error(error);
   }
+};
+
+const displayGitHubUserDetails = (user) => {
+  // 
+  let GitHubUserListDiv = document.getElementById("GitHubUsersList");
+  let userDetailsDiv = document.createElement("div");
+  userDetailsDiv.classList.add("user-details");
+
+  let userName = document.createElement("h2");
+  userName.textContent = user.login;
+  userDetailsDiv.appendChild(userName);
+
+  let avatar = document.createElement("img");
+  avatar.classList.add("avatar");
+  avatar.src = user.avatar_url;
+  userDetailsDiv.appendChild(avatar);
+
+  let bio = document.createElement("p");
+  bio.textContent = user.bio;
+  userDetailsDiv.appendChild(bio);
+
+  let location = document.createElement("p");
+  location.textContent = user.location;
+  userDetailsDiv.appendChild(location);
+
+  GitHubUserListDiv.innerHTML = "";
+  GitHubUserListDiv.appendChild(userDetailsDiv);
 };
