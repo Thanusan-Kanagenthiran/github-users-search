@@ -81,7 +81,7 @@ const displayGitHubUserDetails = (user) => {
 
   // create left column for user avatar and name
   let leftCol = document.createElement("div");
-  leftCol.classList.add("col-md-5", "text-center");
+  leftCol.classList.add("col-md-5", "pb-4", "text-center");
   row.appendChild(leftCol);
 
   // add user avatar to the left column
@@ -95,6 +95,13 @@ const displayGitHubUserDetails = (user) => {
   userName.textContent = user.login;
   leftCol.appendChild(userName);
 
+  // add a "Go to Repo" button to the left column
+  let repoButton = document.createElement("a");
+  repoButton.classList.add("btn", "btn-primary", "mt-3");
+  repoButton.href = user.html_url;
+  repoButton.textContent = "Go to Profile";
+  leftCol.appendChild(repoButton);
+
   // create right column for user details
   let rightCol = document.createElement("div");
   rightCol.classList.add("col-md-7");
@@ -103,6 +110,7 @@ const displayGitHubUserDetails = (user) => {
   // add user bio to the right column
   let bio = document.createElement("p");
   bio.textContent = user.bio;
+  bio.classList.add("border", "bg-light", "rounded", "p-2", "mb-2");
   rightCol.appendChild(bio);
 
   // create a list for user details
