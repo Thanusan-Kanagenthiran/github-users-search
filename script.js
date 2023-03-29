@@ -168,7 +168,7 @@ const displayGitHubUserDetails = (user) => {
   let lastActive = document.createElement("div");
   lastActive.classList.add("user-detail");
   lastActive.innerHTML = `<i class="bi bi-person-fill-check me-2"></i><strong>Last active at:  </strong> ${new Date(
-    user.created_at
+    user.updated_at
   ).toLocaleDateString()}`;
   userDetails.appendChild(lastActive);
 
