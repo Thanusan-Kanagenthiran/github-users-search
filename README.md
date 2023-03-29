@@ -36,10 +36,13 @@ You can find more information about the GitHub REST API v3 in the official docum
 
 ## Sample Images
 
-![Example Image](userDetails.png "Example Image")
-![Example Image](userSearch.png "Example Image")
+<div align="center">
+  <img src="userDetails.png" alt="User Details" width="400" style="margin-right: 20px"/>
+  <img src="userSearch.png" alt="User Search" width="400"/>
+</div>
+<br>
+<div align="center">
+  <img src="mobileSearch.jpg" alt="Mobile Search" width="250" style="margin-right: 20px"/>
+  <img src="mobileView.jpg" alt="Mobile View" width="250"/>
+</div>
 
-<p float="left">
-  <img src="mobileSearch.jpg" alt="Mobile Search" max-width="300"/>
-  <img src="mobileView.jpg" alt="Mobile View" max-width="300"/>
-</p>
