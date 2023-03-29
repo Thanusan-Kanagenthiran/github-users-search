@@ -108,10 +108,12 @@ const displayGitHubUserDetails = (user) => {
   row.appendChild(rightCol);
 
   // add user bio to the right column
-  let bio = document.createElement("p");
-  bio.textContent = user.bio;
-  bio.classList.add("border", "bg-light", "rounded", "p-2", "mb-2");
-  rightCol.appendChild(bio);
+  if (user.bio) {
+    let bio = document.createElement("p");
+    bio.textContent = user.bio;
+    bio.classList.add("border", "bg-light", "rounded", "p-2", "mb-2");
+    rightCol.appendChild(bio);
+  }
 
   // create a list for user details
   let list = document.createElement("ul");
