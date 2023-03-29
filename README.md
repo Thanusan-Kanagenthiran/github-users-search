@@ -32,3 +32,11 @@ You can find more information about the GitHub REST API v3 in the official docum
 - The project uses async/await to make asynchronous requests to the API.
 - If no users are found when searching, an error message will be displayed.
 - If there is an error while making a request to the API, an error message will be displayed.
+- UI has been developed responsive
+
+## Sample Images
+
+![Example Image](userDetails.png "Example Image")
+![Example Image](userSearch.png "Example Image")
+![Example Image](mobileSearch.jpg "Example Image")
+![Example Image](mobileView.jpg "Example Image")

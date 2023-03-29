@@ -8,7 +8,7 @@ const fetchGitHubUsers = async () => {
       `https://api.github.com/search/users?q=${searchInput}`
     );
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
     if (data.items.length === 0) {
