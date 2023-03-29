@@ -90,7 +90,13 @@ const displayGitHubUserDetails = (user) => {
 
   // add user avatar to the left column
   let avatar = document.createElement("img");
-  avatar.classList.add("avatar", "mb-3", "rounded-circle");
+  avatar.classList.add(
+    "avatar",
+    "border",
+    "border-3",
+    "mb-3",
+    "rounded-circle"
+  );
   avatar.src = user.avatar_url;
   leftCol.appendChild(avatar);
 
@@ -106,7 +112,7 @@ const displayGitHubUserDetails = (user) => {
 
   // add a "Go to Repo" button to the left column
   let repoButton = document.createElement("a");
-  repoButton.classList.add("btn", "btn-primary", "mt-3");
+  repoButton.classList.add("btn", "btn-primary", "my-3");
   repoButton.href = user.html_url;
   repoButton.textContent = "Go to Profile";
   leftCol.appendChild(repoButton);
