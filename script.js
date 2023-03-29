@@ -115,62 +115,62 @@ const displayGitHubUserDetails = (user) => {
     rightCol.appendChild(bio);
   }
 
-  // create a list for user details
-  let list = document.createElement("ul");
-  list.classList.add("list-group", "list-group-flush");
-  rightCol.appendChild(list);
+  // create a container for user details
+  let userDetails = document.createElement("div");
+  userDetails.classList.add("user-details");
+  rightCol.appendChild(userDetails);
 
-  // add user location to the list
+  // add user location to the container
   if (user.location) {
-    let location = document.createElement("li");
-    location.classList.add("list-group-item");
-    location.innerHTML = `<strong>Location:</strong> ${user.location}`;
-    list.appendChild(location);
+    let location = document.createElement("div");
+    location.classList.add("user-detail");
+    location.innerHTML = `<i class="bi bi-geo-alt me-2"></i><strong>Location:  </strong> ${user.location}`;
+    userDetails.appendChild(location);
   }
 
-  // add followers and following to the list
-  let followers = document.createElement("li");
-  followers.classList.add("list-group-item");
-  followers.innerHTML = `<strong>Followers:</strong> ${user.followers} | <strong>Following:</strong> ${user.following}`;
-  list.appendChild(followers);
+  // add followers and following to the container
+  let followers = document.createElement("div");
+  followers.classList.add("user-detail");
+  followers.innerHTML = `<i class="bi bi-people-fill me-2"></i><strong>Followers: </strong> ${user.followers} | <strong>Following: </strong> ${user.following}`;
+  userDetails.appendChild(followers);
 
-  // add public repositories to the list
-  let publicRepos = document.createElement("li");
-  publicRepos.classList.add("list-group-item");
-  publicRepos.innerHTML = `<strong>Public Repositories:</strong> ${user.public_repos}`;
-  list.appendChild(publicRepos);
+  // add public repositories to the container
+  let publicRepos = document.createElement("div");
+  publicRepos.classList.add("user-detail");
+  publicRepos.innerHTML = `<i class="bi bi-github me-2"></i><strong>Public Repositories:  </strong> ${user.public_repos}`;
+  userDetails.appendChild(publicRepos);
 
-  // add company to the list
+  // add company to the container
   if (user.company) {
-    let company = document.createElement("li");
-    company.classList.add("list-group-item");
-    company.innerHTML = `<strong>Company:</strong> ${user.company}`;
-    list.appendChild(company);
+    let company = document.createElement("div");
+    company.classList.add("user-detail");
+    company.innerHTML = `<i class="bi bi-building-fill me-2"></i><strong>Company:  </strong> ${user.company}`;
+    userDetails.appendChild(company);
   }
 
-  // add website to the list
+  // add website to the container
   if (user.blog) {
-    let website = document.createElement("li");
-    website.classList.add("list-group-item");
-    website.innerHTML = `<strong>Website:</strong> <a href="${user.blog}" target="_blank">${user.blog}</a>`;
-    list.appendChild(website);
+    let website = document.createElement("div");
+    website.classList.add("user-detail");
+    website.innerHTML = `<i class="bi bi-browser-edge me-2"></i><strong>Website:</strong> <a href="${user.blog}" class="text-muted btn" target="_blank">${user.blog} <i class="bi bi-box-arrow-up-right"></i></a>`;
+    userDetails.appendChild(website);
   }
 
-  // add account creation date to the list
-  let createdAt = document.createElement("li");
-  createdAt.classList.add("list-group-item");
-  createdAt.innerHTML = `<strong>Account created at:</strong> ${new Date(
+  // add account creation date to the container
+  let createdAt = document.createElement("div");
+  createdAt.classList.add("user-detail");
+  createdAt.innerHTML = `<i class="bi bi-person-plus-fill me-2"></i><strong>Account created at:  </strong> ${new Date(
     user.created_at
   ).toLocaleDateString()}`;
-  list.appendChild(createdAt);
+  userDetails.appendChild(createdAt);
 
   // add last active date to the list
-  let lastActive = document.createElement("li");
-  lastActive.classList.add("list-group-item");
-  lastActive.innerHTML = `<strong>Last active:</strong> ${new Date(
-    user.updated_at
+  let lastActive = document.createElement("div");
+  lastActive.classList.add("user-detail");
+  lastActive.innerHTML = `<i class="bi bi-person-fill-check me-2"></i><strong>Last active at:  </strong> ${new Date(
+    user.created_at
   ).toLocaleDateString()}`;
-  list.appendChild(lastActive);
+  userDetails.appendChild(lastActive);
 
   GitHubUserListDiv.appendChild(row);
 };

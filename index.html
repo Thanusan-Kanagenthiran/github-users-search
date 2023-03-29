@@ -12,6 +12,8 @@
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <!-- Bootstrap ICONS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
@@ -23,7 +25,7 @@
         <a class="navbar-brand" href="" onclick="location.reload()">Github User Search</a>
         <div class="d-flex flex-wrap justify-content-end align-items-center">
           <div class="input-group">
-            <input class="form-control" type="search" name="search" id="searchInput">
+            <input class="form-control " placeholder="Search" type="search" name="search" id="searchInput">
             <button class="btn btn-outline-primary" onclick="fetchGitHubUsers()">
               Search
             </button>
@@ -31,6 +33,8 @@
         </div>
       </div>
     </nav>
+
+
   </header>
   <main class="mt-5 pt-5 mx-auto mx-md-auto col-11 px-md-5 col-md-10">
     <div class="row">

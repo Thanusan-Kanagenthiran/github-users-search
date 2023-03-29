@@ -21,3 +21,7 @@ body {
 .avatar {
   max-height: 200px;
 }
+
+.user-detail {
+  margin: 10px;
+}
