@@ -36,7 +36,11 @@ const displayGitHubUsersList = async (users) => {
       "d-flex",
       "align-items-center",
       "py-2",
-      "cursor"
+      "cursor",
+      "bg-dark",
+      "text-light",
+      "border",
+      "border-light"
     );
 
     // avatar node
@@ -81,7 +85,7 @@ const displayGitHubUserDetails = (user) => {
 
   // create left column for user avatar and name
   let leftCol = document.createElement("div");
-  leftCol.classList.add("col-md-5", "pb-4", "text-center");
+  leftCol.classList.add("col-md-5", "text-center", "pt-4");
   row.appendChild(leftCol);
 
   // add user avatar to the left column
@@ -90,10 +94,15 @@ const displayGitHubUserDetails = (user) => {
   avatar.src = user.avatar_url;
   leftCol.appendChild(avatar);
 
-  // add user name to the left column
-  let userName = document.createElement("h4");
-  userName.textContent = user.login;
+  // add username to the left column
+  let userName = document.createElement("h5");
+  userName.textContent = `@${user.login}`;
   leftCol.appendChild(userName);
+
+  // add  name of the user to the left column
+  let Name = document.createElement("h4");
+  Name.textContent = user.name;
+  leftCol.appendChild(Name);
 
   // add a "Go to Repo" button to the left column
   let repoButton = document.createElement("a");
@@ -111,7 +120,7 @@ const displayGitHubUserDetails = (user) => {
   if (user.bio) {
     let bio = document.createElement("p");
     bio.textContent = user.bio;
-    bio.classList.add("border", "bg-light", "rounded", "p-2", "mb-2");
+    bio.classList.add("border", "rounded", "p-2", "mb-2");
     rightCol.appendChild(bio);
   }
 
@@ -152,7 +161,7 @@ const displayGitHubUserDetails = (user) => {
   if (user.blog) {
     let website = document.createElement("div");
     website.classList.add("user-detail");
-    website.innerHTML = `<i class="bi bi-browser-edge me-2"></i><strong>Website:</strong> <a href="${user.blog}" class="text-muted btn" target="_blank">${user.blog} <i class="bi bi-box-arrow-up-right"></i></a>`;
+    website.innerHTML = `<i class="bi bi-browser-edge me-2"></i><strong>Website:</strong> <a href="${user.blog}" class="text-decoration-none" target="_blank">${user.blog} <i class="bi bi-box-arrow-up-right"></i></a>`;
     userDetails.appendChild(website);
   }
 

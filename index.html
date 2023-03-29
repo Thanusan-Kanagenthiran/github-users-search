@@ -18,14 +18,15 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="bg-dark text-light">
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top mb-3 py-md-4">
       <div class="container-fluid">
-        <a class="navbar-brand" href="" onclick="location.reload()">Github User Search</a>
+        <a class="navbar-brand text-light " href="" onclick="location.reload()">Github User Search</a>
         <div class="d-flex flex-wrap justify-content-end align-items-center">
           <div class="input-group">
-            <input class="form-control " placeholder="Search" type="search" name="search" id="searchInput">
+            <input class="form-control bg-dark text-light" placeholder="Search" type="search" name="search"
+              id="searchInput">
             <button class="btn btn-outline-primary" onclick="fetchGitHubUsers()">
               Search
             </button>
@@ -43,9 +44,9 @@
       </ol>
     </div>
   </main>
-  <footer class="footer mt-auto py-3 bg-light sticky-bottom">
+  <footer class="footer mt-auto py-3 sticky-bottom mt-3 bg-dark">
     <div class="container text-center">
-      <span>&copy; 2023 Thanusan Kanagenthiran</span>
+      <span class="text-muted">&copy; 2023 Thanusan Kanagenthiran</span>
     </div>
   </footer>
 
