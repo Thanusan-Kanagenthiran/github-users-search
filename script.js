@@ -1,4 +1,3 @@
-// Fetch GitHub users based on search input
 const fetchGitHubUsers = async () => {
   let GitHubUserListDiv = document.getElementById("GitHubUsersList");
   GitHubUserListDiv.innerHTML = "";
@@ -24,10 +23,6 @@ const fetchGitHubUsers = async () => {
 
 const displayGitHubUsersList = async (users) => {
   let GitHubUserListDiv = document.getElementById("GitHubUsersList");
-  if (!users.length) {
-    displayError("No users found");
-    return;
-  }
   await users.map((user, index) => {
     // user list li node
     const UserListTile = document.createElement("li");
@@ -37,23 +32,19 @@ const displayGitHubUsersList = async (users) => {
     UserListTile.classList.add(
       "list-group-item",
       "d-flex",
-      "align-items-center"
+      "align-items-center",
+      "py-2",
+      "cursor"
     );
-
     // avatar node
     const avatar = document.createElement("img");
-    avatar.classList.add("avatar", "mx-2", "rounded-circle");
+    avatar.classList.add("list-avatar", "mx-2", "rounded-circle");
     avatar.src = user.avatar_url;
-    avatar.style.width = "50px";
-    avatar.style.height = "auto";
-    avatar.style.float = "left";
     UserListTile.appendChild(avatar);
 
     // username node
     const userName = document.createElement("span");
     userName.classList.add("user-name");
-    userName.style.display = "inline-block";
-    userName.style.float = "left";
     userName.textContent =
       user.login.charAt(0).toUpperCase() + user.login.slice(1);
     UserListTile.appendChild(userName);
@@ -76,6 +67,7 @@ const fetchGitHubUserDetails = async (username) => {
     displayError(error.message);
   }
 };
+
 const displayGitHubUserDetails = (user) => {
   let GitHubUserListDiv = document.getElementById("GitHubUsersList");
   GitHubUserListDiv.innerHTML = "";
@@ -92,7 +84,6 @@ const displayGitHubUserDetails = (user) => {
   // add user avatar to the left column
   let avatar = document.createElement("img");
   avatar.classList.add("avatar", "mb-3", "rounded-circle");
-  avatar.style.maxHeight = "200px";
   avatar.src = user.avatar_url;
   leftCol.appendChild(avatar);
 
@@ -172,10 +163,7 @@ const displayGitHubUserDetails = (user) => {
 };
 
 function displayError(message) {
-  // Set the error message in the modal
   document.getElementById("errorMessage").textContent = message;
-
-  // Display the modal
   var errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
   errorModal.show();
 }

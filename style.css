@@ -3,3 +3,21 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.list-avatar {
+  width: 50px;
+  height: auto;
+  float: left;
+}
+
+.user-name {
+  display: inline-block;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.avatar {
+  max-height: 200px;
+}
