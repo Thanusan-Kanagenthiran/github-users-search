@@ -23,7 +23,9 @@ const fetchGitHubUsers = async () => {
 
 const displayGitHubUsersList = async (users) => {
   let GitHubUserListDiv = document.getElementById("GitHubUsersList");
-  await users.map((user, index) => {
+  GitHubUserListDiv.innerHTML = "";
+
+  for (const user of users) {
     // user list li node
     const UserListTile = document.createElement("li");
     UserListTile.addEventListener("click", () =>
@@ -36,6 +38,7 @@ const displayGitHubUsersList = async (users) => {
       "py-2",
       "cursor"
     );
+
     // avatar node
     const avatar = document.createElement("img");
     avatar.classList.add("list-avatar", "mx-2", "rounded-circle");
@@ -50,7 +53,7 @@ const displayGitHubUsersList = async (users) => {
     UserListTile.appendChild(userName);
 
     GitHubUserListDiv.appendChild(UserListTile);
-  });
+  }
 };
 
 const fetchGitHubUserDetails = async (username) => {
