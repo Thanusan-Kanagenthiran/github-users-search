@@ -25,3 +25,7 @@ body {
 .user-detail {
   margin: 10px;
 }
+
+.hide {
+  display: none;
+}

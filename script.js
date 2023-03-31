@@ -1,4 +1,8 @@
+let contentBeforeSearch = document.getElementById("content-before-search");
+
+
 const fetchGitHubUsers = async () => {
+  contentBeforeSearch.classList.add("hide");
   let GitHubUserListDiv = document.getElementById("GitHubUsersList");
   GitHubUserListDiv.innerHTML = "";
   let searchInput = document.getElementById("searchInput").value;
